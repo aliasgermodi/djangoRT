@@ -1,0 +1,23 @@
+
+{% block content %}{% endblock content %}
+
+{% block script %}
+  <script>
+    var socket = new WebSocket('ws://localhost:8000/ws/Notify/');
+    var socket_two = new WebSocket('ws://localhost:8000/ws/polData/');
+
+    socket_two.onopen = function open() {
+      console.log('WebSockets connection created.');
+      socket_two.send("Notification Socket_Tow")
+    };
+
+    socket.onopen = function open() {
+      console.log('WebSockets connection created.');
+      socket.send("Notification Sample")
+    };
+
+    if (socket.readyState == WebSocket.OPEN) {
+      socket.onopen();
+    }
+  </script>
+{% endblock script %}
