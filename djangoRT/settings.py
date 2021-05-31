@@ -54,8 +54,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'djangoRT.urls'
 
 CHANNEL_LAYERS = {
-    "default":{
-        "BACKEND":"channels.layers.InMemoryChannelLayer"
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
 
@@ -128,3 +128,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            # Change localhost to the ip in which you have redis server running on.
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
